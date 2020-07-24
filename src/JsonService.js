@@ -6,7 +6,8 @@ import { Global } from './Global.js';
 
 export class JsonService {
     constructor(
-        additionalContentTypes = null, 
+        withCredentials = false, 
+        additionalContentTypes = null,
         XMLHttpRequestCtor = Global.XMLHttpRequest, 
         jwtHandler = null
     ) {
@@ -25,6 +26,7 @@ export class JsonService {
 
         this._XMLHttpRequest = XMLHttpRequestCtor;
         this._jwtHandler = jwtHandler;
+        this._withCredentials = withCredentials;
     }
 
     getJson(url, token) {
@@ -38,6 +40,7 @@ export class JsonService {
         return new Promise((resolve, reject) => {
 
             var req = new this._XMLHttpRequest();
+            req.withCredentials = this._withCredentials;
             req.open('GET', url);
 
             var allowedContentTypes = this._contentTypes;
@@ -107,6 +110,7 @@ export class JsonService {
         return new Promise((resolve, reject) => {
 
             var req = new this._XMLHttpRequest();
+            req.withCredentials = this._withCredentials;
             req.open('POST', url);
 
             var allowedContentTypes = this._contentTypes;

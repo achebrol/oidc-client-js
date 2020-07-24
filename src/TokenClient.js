@@ -13,7 +13,7 @@ export class TokenClient {
         }
 
         this._settings = settings;
-        this._jsonService = new JsonServiceCtor();
+        this._jsonService = new JsonServiceCtor(settings.withCredentials, []);
         this._metadataService = new MetadataServiceCtor(this._settings);
     }
 

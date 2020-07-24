@@ -23,7 +23,7 @@ export class OidcClientSettings {
         // optional protocol
         prompt, display, max_age, ui_locales, acr_values, resource, response_mode,
         // behavior flags
-        filterProtocolClaims = true, loadUserInfo = true,
+        filterProtocolClaims = true, loadUserInfo = true,withCredentials = false,
         staleStateAge = DefaultStaleStateAge, clockSkew = DefaultClockSkewInSeconds,
         userInfoJwtIssuer = 'OP',
         // other behavior
@@ -57,6 +57,7 @@ export class OidcClientSettings {
 
         this._filterProtocolClaims = !!filterProtocolClaims;
         this._loadUserInfo = !!loadUserInfo;
+        this._withCredentials = !!withCredentials;
         this._staleStateAge = staleStateAge;
         this._clockSkew = clockSkew;
         this._userInfoJwtIssuer = userInfoJwtIssuer;
@@ -174,6 +175,9 @@ export class OidcClientSettings {
     }
     get loadUserInfo() {
         return this._loadUserInfo;
+    }
+    get withCredentials() {
+        return this._withCredentials;
     }
     get staleStateAge() {
         return this._staleStateAge;
